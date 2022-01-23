@@ -1,18 +1,24 @@
 package Contas;
 
+import java.time.LocalDateTime;
+
 public abstract class Conta {
 
     private int numero;
     protected double saldo;
     private String CPF;
     private String nome;
+    private LocalDateTime dataDeAbertura;
     
-    public Conta(int numero, double saldo, String cPF, String nome) {
+
+    public Conta(int numero, double saldo, String cPF, String nome, LocalDateTime dataDeAbertura) {
         this.numero = numero;
         this.saldo = saldo;
         CPF = cPF;
         this.nome = nome;
+        this.dataDeAbertura = dataDeAbertura;
     }
+
     public  boolean transferir(Conta conta, double valor){
         if(this.sacar(valor)){
             conta.depositar(valor);
@@ -23,35 +29,26 @@ public abstract class Conta {
     }
 
     public abstract boolean sacar(double valor);
-    
+   
     public void depositar(double valor){
         this.saldo += valor;
 
 }
-    
-    public int getNumero() {
-        return numero;
-    }
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-    public abstract double getSaldo();
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    @Override
+    public String toString() {
+        return "Conta [CPF=" 
+        + CPF + ", dataDeAbertura=" 
+        + dataDeAbertura 
+        + ", nome=" 
+        + nome 
+        + ", numero=" 
+        + numero
+                
+        + ", saldo=" + saldo + "]";
     }
-    public String getCPF() {
-        return CPF;
-    }
-    public void setCPF(String cPF) {
-        CPF = cPF;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    
+
     
     
 }

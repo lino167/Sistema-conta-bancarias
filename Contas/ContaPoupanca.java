@@ -1,49 +1,38 @@
 package Contas;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ContaPoupanca extends Conta{
 
-    private LocalDateTime dataCadastro;
     private double taxaDeJuros;
-    private double Saldo;
-    private double getSaldo;
+    private int diaAniversario;
     
-    public ContaPoupanca(int numero, double saldo, String cPF, String nome, LocalDateTime dataCadastro, double taxaDeJuros) {
-        super(numero, saldo, cPF, nome);
-        this.dataCadastro = dataCadastro;
+    public ContaPoupanca(int numero, double saldo, String cPF, String nome, LocalDateTime dataDeAbertura,
+            double taxaDeJuros, int diaAniversario) {
+        super(numero, saldo, cPF, nome, dataDeAbertura);
         this.taxaDeJuros = taxaDeJuros;
+        this.diaAniversario = diaAniversario;
     }
-
-
-    public double saldo(int dia){
-        if (LocalDate >= this.dataCadastro){
-        this.getSaldo = this.getSaldo() + this.getSaldo() * this.taxaDeJuros;
-        return this.getSaldo();
-        } else {
-            return this.getSaldo();
-        }
-    }
-
 
     @Override
     public boolean sacar(double valor) {
-        // TODO Auto-generated method stub
-        return false;
+        this.saldo -= valor;
+        return true;
     }
 
+    public double getSaldo(){
+        return this.saldo + this.taxaDeJuros * this.saldo;
+    }
 
     @Override
-    public boolean depositar(double valor) {
-        // TODO Auto-generated method stub
-        return false;
+    public String toString() {
+        return super.toString() 
+        + "ContaPoupanca [diaAniversario=" 
+        + diaAniversario 
+        + ", taxaDeJuros=" 
+        + taxaDeJuros + "]";
     }
-
-
-    @Override
-    public double getSaldo() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+   
+    
+   
 }
