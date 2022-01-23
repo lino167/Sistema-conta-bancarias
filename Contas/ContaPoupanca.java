@@ -1,18 +1,21 @@
 package Contas;
 
-import java.time.LocalDateTime;
+import java.util.Random;
+
+import exceptions.Data;
 
 public class ContaPoupanca extends Conta{
 
     private double taxaDeJuros;
     private int diaAniversario;
     
-    public ContaPoupanca(int numero, double saldo, String cPF, String nome, LocalDateTime dataDeAbertura,
-            double taxaDeJuros, int diaAniversario) {
+    public ContaPoupanca(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura,
+        double taxaDeJuros, int diaAniversario) {
         super(numero, saldo, cPF, nome, dataDeAbertura);
         this.taxaDeJuros = taxaDeJuros;
         this.diaAniversario = diaAniversario;
     }
+    
 
     @Override
     public boolean sacar(double valor) {
@@ -20,8 +23,15 @@ public class ContaPoupanca extends Conta{
         return true;
     }
 
-    public double getSaldo(){
-        return this.saldo + this.taxaDeJuros * this.saldo;
+ 
+
+    public double getSaldo(int dia){
+        if (dia >= this.diaAniversario) {
+            return this.saldo + this.taxaDeJuros * this.saldo;
+            
+        } else {
+            return this.saldo;
+        }
     }
 
     @Override

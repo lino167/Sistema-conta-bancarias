@@ -1,12 +1,14 @@
 package Contas;
 
-import java.time.LocalDateTime;
+import java.util.Random;
+
+import exceptions.Data;
 
 public class ContaSalario extends Conta implements Tributaveis {
 
 private int limiteDeSaques;
 
-public ContaSalario(int numero, double saldo, String cPF, String nome, LocalDateTime dataDeAbertura,
+public ContaSalario(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura,
         int limiteDeSaques) {
     super(numero, saldo, cPF, nome, dataDeAbertura);
     this.limiteDeSaques = limiteDeSaques;
@@ -14,8 +16,7 @@ public ContaSalario(int numero, double saldo, String cPF, String nome, LocalDate
 
 @Override
 public double getValorImposto() {
-    // TODO Auto-generated method stub
-    return 0;
+    return this.getSaldo()*0.01;
 }
 
 @Override
