@@ -1,18 +1,23 @@
 package Contas;
 
-import java.util.Random;
 
-import exceptions.Data;
+import java.time.LocalDateTime;
+
+
+
 
 public class ContaCorrente extends Conta implements Tributaveis{
 
-    private double chequeEspecial;
+    private double chequeEspecial = 200;
 
-    public ContaCorrente(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura,
+    public ContaCorrente(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbertura,
             double chequeEspecial) {
-        super(numero, saldo, cPF, nome, dataDeAbertura);
+        super(numero, saldo, cPF, nome, dataAbertura);
         this.chequeEspecial = chequeEspecial;
     }
+
+
+
 
     @Override
     public String toString() {
@@ -42,6 +47,42 @@ public class ContaCorrente extends Conta implements Tributaveis{
     
 public double getSaldo(){
     return this.chequeEspecial + this.saldo;
+}
+
+
+
+
+@Override
+public void mostrarDados() {
+    
+}
+
+
+
+
+public double getChequeEspecial() {
+    return chequeEspecial;
+}
+
+
+
+
+public void setChequeEspecial(double chequeEspecial) {
+    this.chequeEspecial = chequeEspecial;
+}
+
+
+
+
+@Override
+public void configurarConta(String nome, String CPF) {
+    this.setDataDeAbertura(LocalDateTime.now());
+    this.setCPF(CPF);
+    this.setNome(nome);
+    this.setChequeEspecial(chequeEspecial);
+    
+
+    
 }
     
     

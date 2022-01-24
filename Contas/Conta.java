@@ -1,25 +1,82 @@
 package Contas;
 
-import java.util.Random;
 
-import exceptions.Data;
+import java.time.LocalDateTime;
+
+
+
 
 public abstract class Conta {
 
-    private Random numero;
+    private int numero;
     protected double saldo;
     private String CPF;
     private String nome;
-    protected Data dataDeAbertura;
+    protected LocalDateTime dataDeAbertura;
     
 
-    public Conta(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura) {
+    public Conta(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbetura) {
         this.numero = numero;
         this.saldo = saldo;
         CPF = cPF;
         this.nome = nome;
+        this.dataDeAbertura = dataAbetura;
+    }
+
+    public abstract void configurarConta(String nome, String CPF);
+
+    
+
+    public void setDataDeAbertura(LocalDateTime dataDeAbertura) {
         this.dataDeAbertura = dataDeAbertura;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+
+    public String getCPF() {
+        return CPF;
+    }
+
+
+    public void setCPF(String cPF) {
+        CPF = cPF;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public LocalDateTime getDataDeAbertura() {
+        return dataDeAbertura;
+    }
+
+
+  
 
 
     public  boolean transferir(Conta conta, double valor){
@@ -51,17 +108,14 @@ public abstract class Conta {
         + ", saldo=" + saldo + "]";
     }
     
-public String mostraDados(){
-    String dados = "Titular: " + this.nome;
-    dados += "\nCPF: " + this.CPF;
-    dados += "\nNúmero da conta: " + this.numero;
-    dados += "\nSaldo disponível: " + this.saldo;
-    dados += "Dia: "+"/" + this.dataDeAbertura.dia;
-    dados += "Mês: "+"/" + this.dataDeAbertura.mes;
-    dados += "Ano: " + this.dataDeAbertura.ano;
-    return dados;
+
+    public abstract void mostrarDados();
+
+    public double motanteBanco(){
+        return getSaldo();
+    }
     
 }
     
     
-}
+

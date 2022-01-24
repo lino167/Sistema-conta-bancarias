@@ -1,16 +1,18 @@
 package Contas;
 
-import java.util.Random;
 
-import exceptions.Data;
+import java.time.LocalDateTime;
+
+
+
 
 public class ContaSalario extends Conta implements Tributaveis {
 
-private int limiteDeSaques;
+private int limiteDeSaques = 3;
 
-public ContaSalario(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura,
+public ContaSalario(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbertura,
         int limiteDeSaques) {
-    super(numero, saldo, cPF, nome, dataDeAbertura);
+    super(numero, saldo, cPF, nome, dataAbertura);
     this.limiteDeSaques = limiteDeSaques;
 }
 
@@ -39,6 +41,18 @@ public boolean sacar(double valor) {
 
 public double getSaldo(){
     return this.saldo;
+}
+
+@Override
+public void mostrarDados() {
+    
+}
+
+@Override
+public void configurarConta(String nome, String CPF) {
+    this.setDataDeAbertura(LocalDateTime.now());
+        this.setCPF(CPF);
+        this.setNome(nome);
 }
     
 }

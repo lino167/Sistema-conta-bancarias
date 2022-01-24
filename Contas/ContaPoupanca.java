@@ -1,17 +1,19 @@
 package Contas;
 
-import java.util.Random;
 
-import exceptions.Data;
+import java.time.LocalDateTime;
+
+
+
 
 public class ContaPoupanca extends Conta{
 
-    private double taxaDeJuros;
-    private int diaAniversario;
+    private double taxaDeJuros = 2.0;
+    private int diaAniversario = 10;
     
-    public ContaPoupanca(Random numero, double saldo, String cPF, String nome, Data dataDeAbertura,
+    public ContaPoupanca(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbertura,
         double taxaDeJuros, int diaAniversario) {
-        super(numero, saldo, cPF, nome, dataDeAbertura);
+        super(numero, saldo, cPF, nome, dataAbertura);
         this.taxaDeJuros = taxaDeJuros;
         this.diaAniversario = diaAniversario;
     }
@@ -41,6 +43,21 @@ public class ContaPoupanca extends Conta{
         + diaAniversario 
         + ", taxaDeJuros=" 
         + taxaDeJuros + "]";
+    }
+
+
+    @Override
+    public void mostrarDados() {
+        
+    }
+
+
+    @Override
+    public void configurarConta(String nome, String CPF) {
+        this.setDataDeAbertura(LocalDateTime.now());
+        this.setCPF(CPF);
+        this.setNome(nome);
+        
     }
    
     
