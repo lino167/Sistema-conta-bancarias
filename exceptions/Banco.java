@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import Contas.Conta;
+import Contas.ContaBancaria;
 import Contas.ContaCorrente;
 import Contas.ContaPoupanca;
 import Contas.ContaSalario;
@@ -14,7 +14,7 @@ public class Banco {
     
     private static Scanner ler;
     private String nomeBanco;
-    private ArrayList <Conta> banco = new ArrayList<>();
+    private ArrayList <ContaBancaria> banco = new ArrayList<>();
     
     
 
@@ -26,15 +26,15 @@ public class Banco {
         return nomeBanco;
     }
 
-    public ArrayList<Conta> getBanco() {
+    public ArrayList<ContaBancaria> getBanco() {
         return banco;
     }
 
-    public Conta criarConta(String nome, String CPF) {
+    public ContaBancaria criarConta(String nome, String CPF) {
         ler = new Scanner(System.in);
         Random random;
         int numero, opcao;
-        Conta auxiliar, conta;
+        ContaBancaria auxiliar, conta;
         LocalDateTime dataAtual = LocalDateTime.now();
 
         if(!this.validarCliente(nome, CPF)){
@@ -54,8 +54,8 @@ public class Banco {
             System.out.println("1- Conta Corrente");
             System.out.println("2- Conta Poupanca");
             System.out.println("3- Conta Salário");
-            try (Scanner scanner = new Scanner(System.in)) {
-            }
+            Scanner scanner = new Scanner(System.in);
+            
             System.out.print("Digite a opção desejada: ");
             opcao = ler.nextInt();
 
@@ -79,7 +79,7 @@ public class Banco {
 
    
     public boolean validarCliente(String nome, String CPF){
-        for(Conta conta : banco){
+        for(ContaBancaria conta : banco){
             if(conta.getCPF().equals(CPF)) {
                 if(!conta.getNome().equals(nome)){
                     return false;
@@ -89,7 +89,7 @@ public class Banco {
         }
         return true;
     }
-    public boolean inserir(Conta conta){
+    public boolean inserir(ContaBancaria conta){
         if(!this.getBanco().contains(conta)){
             this.getBanco().add(conta);
             System.out.println("Conta cadastrada com sucesso!");
@@ -102,8 +102,8 @@ public class Banco {
     }
 
 
-    public Conta procurarConta(int numero){
-        for(Conta conta : banco){
+    public ContaBancaria procurarConta(int numero){
+        for(ContaBancaria conta : banco){
             if(conta.getNumero() == numero){
                 return conta;
             }
@@ -117,18 +117,10 @@ public class Banco {
         System.out.println("| ***Clientes do Banco " + this.getNomeBanco() + "*** |  ");
         System.out.println(" -----------------------------------");
 
-        for(Conta x : banco){
+        for(ContaBancaria x : banco){
             x.mostrarDados();
             System.out.println();
         }
-        for (Conta m : banco) {
-            m.getSaldo();
-            System.out.println();  
-     }
     }
-
-	public void getSaldo() {
-	}
-
 
 }

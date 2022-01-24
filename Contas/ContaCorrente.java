@@ -2,11 +2,12 @@ package Contas;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
 
-public class ContaCorrente extends Conta implements Tributaveis{
+public class ContaCorrente extends ContaBancaria implements Tributaveis{
 
     private double chequeEspecial = 200;
 
@@ -50,16 +51,6 @@ public double getSaldo(){
 }
 
 
-
-
-@Override
-public void mostrarDados() {
-    
-}
-
-
-
-
 public double getChequeEspecial() {
     return chequeEspecial;
 }
@@ -79,11 +70,25 @@ public void configurarConta(String nome, String CPF) {
     this.setDataDeAbertura(LocalDateTime.now());
     this.setCPF(CPF);
     this.setNome(nome);
-    this.setChequeEspecial(chequeEspecial);
-    
-
+  
     
 }
-    
-    
+   
+@Override
+public void mostrarDados(){
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
+    System.out.println("***Conta Corrente***");
+    System.out.println("Cliente: " + this.getNome());
+    System.out.println("CPF: " + this.getCPF());
+    System.out.println("Numero da Conta: " + this.getNumero());
+    System.out.println("Data de Cadastro: " + dtf.format(this.getDataDeAbertura()));
+    System.out.println("Saldo: R$ " + this.getSaldo());
+    System.out.println("Cheque especial: R$ " + this.getChequeEspecial());
+    System.out.println("Imposto: R$ " + this.getValorImposto());
+    System.out.println();
+}
+@Override
+public int compareTo(ContaBancaria o) {
+    return this.getNome().compareTo(o.getNome());
+} 
 }

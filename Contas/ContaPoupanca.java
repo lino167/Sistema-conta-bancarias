@@ -2,11 +2,12 @@ package Contas;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
 
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends ContaBancaria{
 
     private double taxaDeJuros = 2.0;
     private int diaAniversario = 10;
@@ -18,6 +19,26 @@ public class ContaPoupanca extends Conta{
         this.diaAniversario = diaAniversario;
     }
     
+
+    public double getTaxaDeJuros() {
+        return taxaDeJuros;
+    }
+
+
+    public void setTaxaDeJuros(double taxaDeJuros) {
+        this.taxaDeJuros = taxaDeJuros;
+    }
+
+
+    public int getDiaAniversario() {
+        return diaAniversario;
+    }
+
+
+    public void setDiaAniversario(int diaAniversario) {
+        this.diaAniversario = diaAniversario;
+    }
+
 
     @Override
     public boolean sacar(double valor) {
@@ -48,7 +69,15 @@ public class ContaPoupanca extends Conta{
 
     @Override
     public void mostrarDados() {
-        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
+        System.out.println("***Conta Poupanca***");
+        System.out.println("Cliente: " + this.getNome());
+        System.out.println("CPF: " + this.getCPF());
+        System.out.println("Numero da Conta: " + this.getNumero());
+        System.out.println("Data de Cadastro: " + dtf.format(this.getDataDeAbertura()));
+        System.out.println("Saldo: R$" + this.getSaldo());
+        System.out.println("Taxa de juros: R$ " + this.getTaxaDeJuros());
+        System.out.println();
     }
 
 
@@ -58,6 +87,12 @@ public class ContaPoupanca extends Conta{
         this.setCPF(CPF);
         this.setNome(nome);
         
+    }
+
+
+    @Override
+    public int compareTo(ContaBancaria o) {
+        return this.getNome().compareTo(o.getNome());
     }
    
     

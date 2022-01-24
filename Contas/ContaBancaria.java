@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 
 
-public abstract class Conta {
+public abstract class ContaBancaria implements Comparable<ContaBancaria> {
 
     private int numero;
     protected double saldo;
@@ -15,7 +15,7 @@ public abstract class Conta {
     protected LocalDateTime dataDeAbertura;
     
 
-    public Conta(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbetura) {
+    public ContaBancaria(int numero, double saldo, String cPF, String nome, LocalDateTime dataAbetura) {
         this.numero = numero;
         this.saldo = saldo;
         CPF = cPF;
@@ -25,7 +25,7 @@ public abstract class Conta {
 
     public abstract void configurarConta(String nome, String CPF);
 
-    
+
 
     public void setDataDeAbertura(LocalDateTime dataDeAbertura) {
         this.dataDeAbertura = dataDeAbertura;
@@ -79,7 +79,7 @@ public abstract class Conta {
   
 
 
-    public  boolean transferir(Conta conta, double valor){
+    public  boolean transferir(ContaBancaria conta, double valor){
         if(this.sacar(valor)){
             conta.depositar(valor);
             return true;
